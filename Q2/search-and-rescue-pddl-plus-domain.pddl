@@ -64,6 +64,7 @@
     (carrying        ?r - robot ?v - victim)
     (moving          ?r - robot ?from - location ?to - location)
     (robot-available ?r - robot)
+    (hands-free ?r - robot)
   )
 
   (:functions
@@ -131,7 +132,7 @@
   )
 
   ;; Rescue robot picks up a stabilized victim.
-  ;; Requires victim-at — only reachable after search has run.
+  ;; Requires victim-at, only reachable after search has run.
   (:action pickup
     :parameters (?r - robot ?l - location ?v - victim)
     :precondition (and
@@ -142,9 +143,11 @@
       (stabilized ?v)
       (not (rescued ?v))
       (not (victim-lost ?v))
+      (hands-free ?r)
     )
     :effect (and
       (carrying ?r ?v)
+      (not (hands-free ?r))
       (not (victim-at ?v ?l))
     )
   )
@@ -158,9 +161,11 @@
       (at ?r ?l)
       (safe-zone ?l)
       (carrying ?r ?v)
+      (not (victim-lost ?v))
     )
     :effect (and
       (rescued ?v)
+      (hands-free ?r)
       (not (carrying ?r ?v))
     )
   )

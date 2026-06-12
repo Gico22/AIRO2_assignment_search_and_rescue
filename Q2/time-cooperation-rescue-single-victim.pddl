@@ -42,6 +42,7 @@
     (at rescue-robot entrance)
     (robot-available search-robot)
     (robot-available rescue-robot)
+    (hands-free rescue-robot)
 
     (is-search-robot search-robot)
     (is-rescue-robot rescue-robot)

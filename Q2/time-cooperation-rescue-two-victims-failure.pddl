@@ -25,7 +25,7 @@
     n-hall n-room n-deep
     s-hall s-room s-deep - location
     search-robot rescue-robot - robot
-    victim1 victim2           - victim
+    victim1 victim2 - victim
   )
 
   (:init
@@ -45,6 +45,7 @@
     (at rescue-robot entrance)
     (robot-available search-robot)
     (robot-available rescue-robot)
+    (hands-free rescue-robot)
 
     (is-search-robot search-robot)
     (is-rescue-robot rescue-robot)
